@@ -1,6 +1,10 @@
+
 body{
     font-family: 'Fjalla One', sans-serif;
+    font-size: 35px;
+    background: #DDDDDD;
 }
+
 
 #logo{
     padding: 0%;
@@ -19,6 +23,8 @@ header{
     display: inline-block;
     position: relative;
     margin-left: 10%;
+    width: fit-content;
+    
     
 }
 
@@ -32,7 +38,7 @@ header{
 
 h1{ 
     display: inline-block;
-    font-size: 70px;
+    font-size: 2em;
     position: absolute;
     top: 30%;
     right: 5%;
