@@ -47,7 +47,7 @@ h1{
 }
 
 footer{
-    margin-top: 1000px;
+    margin-top: 100px;
     height: auto;
     padding-bottom: 30px;
     background: #087441;
@@ -58,4 +58,10 @@ footer{
     padding: 0%;
     width: 220px;
     margin-left: 41%;
+}
+
+.paginas li{
+    display: inline-block;
+    color: blue;
+    text-decoration: underline;
 }
