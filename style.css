@@ -1,0 +1,55 @@
+body{
+    font-family: 'Fjalla One', sans-serif;
+}
+
+#logo{
+    padding: 0%;
+    width: 220px;
+    margin-left: 10%;
+}
+header{
+    height: auto;
+    padding-bottom: 30px;
+    background: #087441;
+    position: relative;
+}
+
+.search-box{
+    font-weight: bold;
+    display: inline-block;
+    position: relative;
+    margin-left: 10%;
+    
+}
+
+#main-search{
+    border: black 1px solid;
+    border-radius: 8px;
+    width: 200%;
+    height: 30px;
+
+}
+
+h1{ 
+    display: inline-block;
+    font-size: 70px;
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    bottom: 10%;
+    
+}
+
+footer{
+    margin-top: 1000px;
+    height: auto;
+    padding-bottom: 30px;
+    background: #087441;
+    position: relative;
+}
+
+#logo-foot{
+    padding: 0%;
+    width: 220px;
+    margin-left: 41%;
+}
