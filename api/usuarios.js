@@ -1,6 +1,3 @@
-var lista = document.querySelector(".lista-usuarios");
-var pagina = document.querySelectorAll('a');
-
 
 function listaUsuarios(page){
     return fetch(`https://api.github.com/search/users?q=location:Piracicaba&page=${page}`)
@@ -12,12 +9,6 @@ function listaUsuarios(page){
         return json.items
     })
 }
-pagina.forEach(p => {
-    p.addEventListener("click", function(event){
-        event.preventDefault();
-        paginaUsuarios(p.textContent)
-    });
-});
 
 function paginaUsuarios(page){
     lista.innerHTML = ""
@@ -41,3 +32,4 @@ function createUserCard(user){
     return card
 }
 
+paginaUsuarios("1");
