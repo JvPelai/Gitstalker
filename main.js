@@ -1,6 +1,6 @@
 
 var lista = document.querySelector(".lista-usuarios");
-var pagina = document.querySelectorAll('a');
+var pagina = document.querySelectorAll('.pagina');
 
 pagina.forEach(p => {
     p.addEventListener("click", function(event){
