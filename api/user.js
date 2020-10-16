@@ -11,46 +11,49 @@ function userData(name){
     .then( response => {
         return response.json();
     }).then( json => {
+        console.log(json)
         return json
     })
 };
 
 function createUserPage(user){
+    var userInfo = document.createElement("div");
+    userInfo.classList.add("user-info");
+
     var avatar = document.createElement("div");
-    avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}">`;
+    avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}"> <h2>${user.name}</h2>`;
     profileSection.appendChild(avatar);
 
-    var name = document.createElement('h2');
-    name.textContent = user.name;
-    profileSection.appendChild(name);
 
     var bio = document.createElement('p');
     bio.textContent = user.bio;
-    profileSection.appendChild(bio);
+    userInfo.appendChild(bio);
 
-    var company = document.createElement("h3");
-    company.textContent = user.company;
-    profileSection.appendChild(company);
+    if(user.company != null){
+        var company = document.createElement("p");
+        company.innerHTML = `<img src="images/usr-company.png">  ${user.company}`;
+        userInfo.appendChild(company);
+    }
 
-    var email = document.createElement('p');
-    email.textContent = user.email;
-    profileSection.appendChild(email);
+    if(user.email != null){
+        var email = document.createElement('p');
+        email.innerHTML = `<img src="images/usr-email.png">  ${user.email}`;
+        userInfo.appendChild(email);
+    }
 
     var followers = document.createElement('p');
-    followers.textContent = user.followers;
-    profileSection.appendChild(followers)
-
-    var following = document.createElement('p');
-    following.textContent = user.following;
-    profileSection.appendChild(following);
+    followers.innerHTML = `<img src="images/usr-followers.png"> Seguidores: ${user.followers} |  Seguindo: ${user.following}`;
+    userInfo.appendChild(followers)
 
     var repos = document.createElement('p');
-    repos.textContent = user.public_repos;
-    profileSection.appendChild(repos);
+    repos.innerHTML = `<img src="images/usr-repos.png"> Repositórios: ${user.repos}`;
+    userInfo.appendChild(repos);
 
     var location = document.createElement('p');
-    location.textContent = user.location;
-    profileSection.appendChild(location);
+    location.innerHTML = `<img src="images/usr-location.png">  ${user.location}`;
+    userInfo.appendChild(location);
+
+    profileSection.appendChild(userInfo);
 
 }
 
