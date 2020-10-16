@@ -1,11 +1,9 @@
 
-function listaUsuarios(page){
-    return fetch(`https://api.github.com/search/users?q=location:Piracicaba&page=${page}`)
+function listaUsuarios(page="1"){
+    return fetch(`https://api.github.com/search/users?q=${searchBar.value}+location:Piracicaba&page=${page}`)
     .then( response => {
-        console.log(response)
         return response.json();
     }).then( json => {
-        console.log(json)
         return json.items
     })
 }
