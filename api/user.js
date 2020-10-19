@@ -21,7 +21,11 @@ function createUserPage(user){
     userInfo.classList.add("user-info");
 
     var avatar = document.createElement("div");
-    avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}"> <h2>${user.name}</h2>`;
+    if(user.name != null){
+        avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}"> <h2>${user.name}</h2>`;
+    }else{
+        avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}"> <h2>${user.login}</h2>`;
+    }
     profileSection.appendChild(avatar);
 
 
@@ -60,6 +64,7 @@ function createUserPage(user){
 function userProfile(username){
     profileSection.innerHTML = "";
     userData(username).then( obj => {
+        var login = obj.login;
         var name = obj.name;
         var avatar = obj.avatar_url;
         var bio = obj.bio;
@@ -69,7 +74,7 @@ function userProfile(username){
         var following = obj.following;
         var repos = obj.public_repos;
         var location = obj.location;
-        var user = {name,avatar,bio,company,email,followers,following,repos,location};
+        var user = {login,name,avatar,bio,company,email,followers,following,repos,location};
         console.log(user);
         createUserPage(user);
     });

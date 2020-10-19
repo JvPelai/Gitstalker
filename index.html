@@ -27,7 +27,7 @@
             <main>
 
                 <h3>Filtrar busca:</h3>
-                <form>
+                <form id="filter-form">
 
                     <div class="search-option">
                         
@@ -42,36 +42,44 @@
                     
                     <div class="filtra-data-config">
                         <label for="filtro-data">Data de cadastro</label>
-                        <input type="checkbox" name="filtro-data"><br>
-                        <label for="ordem-exib">Ordem:</label><br>
+                        <input type="checkbox" name="filtro-data" id="filtro-data"><br>
+
                         
-                        <label for="ordem-exib">Mais recente</label>
-                        <input type="radio" name="ordem-exib">
-                        <label for="ordem-exib">Mais antigo</label>
-                        <input type="radio" name="ordem-exib">
+                        <label for="min-data-cad">Cadastados a partir de:</label>
+                        <input type="date" name="min-data-cad" id="min-data-cad"><br>
+
+                        <label for="max-data-cad">Cadastados antes de:</label>
+                        <input type="date" name="max-data-cad" id="max-data-cad"><br>
+                        
                     </div>
                     
                     <div class="filtra-seguidores-config">
                         <label for="filtro-seg">Numero de seguidores:</label>
-                        <input type="checkbox" name="filtro-seg"><br>
-                        <label for="ordem-seg">Ordem:</label><br>
+                        <input type="checkbox" name="filtro-seg" id="filtro-seg"><br>
+                        <label>Selecione um valor de busca:</label><br>
                         
-                        <label for="ordem-seg">Mais seguidores</label>
-                        <input type="radio" name="ordem-seg">
-                        <label for="ordem-seg">Menos seguidores</label>
-                        <input type="radio" name="ordem-seg"> 
+                        <label for="min-seguidores">A partir de:</label>
+                        <input type="number" id="min-seguidores" name="min-seguidores" min="0" max="100.000">
+
+                        <label for="max-seguidores">Até:</label>
+                        <input type="number" id="max-seguidores" name="max-seguidores" min="1">
+                        
                     </div>
                     
                     <div class="filtra-repos-config">
                         <label for="filtro-repos">Numero de repositórios:</label>
-                        <input type="checkbox" name="filtro-repos"><br>
-                        <label for="ordem-repos">Ordem:</label><br>
-                        
-                        <label for="ordem-repos">Mais repositórios</label>
-                        <input type="radio" name="ordem-repos">
-                        <label for="ordem-repos">Menos repositórios</label>
-                        <input type="radio" name="ordem-repos"> 
+                        <input type="checkbox" name="filtro-repos" id="filtro-repos"><br>
+                        <label for="ordem-repos">Selecione um valor de busca:</label><br>
+
+                        <label for="min-repos">A partir de:</label>
+                        <input type="number" id="min-repos" name="min-repos" min="0" max="100.000">
+
+                        <label for="max-seguidores">Até:</label>
+                        <input type="number" id="max-repos" name="max-repos" min="1">     
                     </div>
+                    <br>
+
+                    <input type="submit" id="filter-submit" value="Aplicar Filtros">
                     
                 </form>
                     

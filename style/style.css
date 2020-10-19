@@ -6,9 +6,10 @@ body{
 }
 
 textarea:focus, input:focus, select:focus {
-    box-shadow: 1px 1px 1px 1px;
+    box-shadow: none;
     border: 0 none;
     outline: 0;
+    outline-offset: 0;
 }
 
 input::-webkit-input-placeholder{
@@ -52,7 +53,11 @@ header{
     height: 25px;
     background-color: white;
     margin-left: 10px;
+    
 
+}
+#main-search:focus{
+    box-shadow: 1px 1px 1px 1px;
 }
 .search-btn{
     position: absolute;
@@ -164,5 +169,26 @@ label{
     border-left:1px solid black;
     border-top: 1px solid black;
     margin: 20px;
-    padding-left: 20px;
+    padding: 20px;
+}
+.filtra-data-config{
+    top: 3px;
+}
+
+#filter-submit{
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin: 20px;
+    width: 260px;
+    height: 35px;
+    background: #087441;
+    border-radius: 5px;
+    border-color: black;
+}
+
+#filter-submit:hover{
+    cursor: pointer;
+    background: #249b63;
+    transition: 1s;
 }
