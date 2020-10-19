@@ -25,10 +25,58 @@
             </header>
             <br>
             <main>
-               
-               
-                
-                <h2>Usuários:</h2><br>
+
+                <h3>Filtrar busca:</h3>
+                <form>
+
+                    <div class="search-option">
+                        
+                        <label for="tipo-busca">Tipo de busca:</label><br>
+                        
+                        <label for="tipo-busca">Usuários</label>
+                        <input type="radio" name="tipo-busca" value="User" checked>
+                        <label for="tipo-busca">Organizações</label>
+                        <input type="radio" name="tipo-busca" value="org"> 
+                        <br>
+                    </div>
+                    
+                    <div class="filtra-data-config">
+                        <label for="filtro-data">Data de cadastro</label>
+                        <input type="checkbox" name="filtro-data"><br>
+                        <label for="ordem-exib">Ordem:</label><br>
+                        
+                        <label for="ordem-exib">Mais recente</label>
+                        <input type="radio" name="ordem-exib">
+                        <label for="ordem-exib">Mais antigo</label>
+                        <input type="radio" name="ordem-exib">
+                    </div>
+                    
+                    <div class="filtra-seguidores-config">
+                        <label for="filtro-seg">Numero de seguidores:</label>
+                        <input type="checkbox" name="filtro-seg"><br>
+                        <label for="ordem-seg">Ordem:</label><br>
+                        
+                        <label for="ordem-seg">Mais seguidores</label>
+                        <input type="radio" name="ordem-seg">
+                        <label for="ordem-seg">Menos seguidores</label>
+                        <input type="radio" name="ordem-seg"> 
+                    </div>
+                    
+                    <div class="filtra-repos-config">
+                        <label for="filtro-repos">Numero de repositórios:</label>
+                        <input type="checkbox" name="filtro-repos"><br>
+                        <label for="ordem-repos">Ordem:</label><br>
+                        
+                        <label for="ordem-repos">Mais repositórios</label>
+                        <input type="radio" name="ordem-repos">
+                        <label for="ordem-repos">Menos repositórios</label>
+                        <input type="radio" name="ordem-repos"> 
+                    </div>
+                    
+                </form>
+                    
+                    
+                    <h2>Usuários:</h2><br>
                
 
                 <div class="lista-usuarios">

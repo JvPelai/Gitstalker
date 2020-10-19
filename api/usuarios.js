@@ -1,6 +1,6 @@
 
-function listaUsuarios(page="1"){
-    return fetch(`https://api.github.com/search/users?q=${searchBar.value}+location:Piracicaba&page=${page}`)
+function listaUsuarios(page="1",type="User"){
+    return fetch(`https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba&page=${page}`)
     .then( response => {
         return response.json();
     }).then( json => {
@@ -8,9 +8,9 @@ function listaUsuarios(page="1"){
     })
 }
 
-function paginaUsuarios(page){
+function paginaUsuarios(page,type="User"){
     lista.innerHTML = ""
-    listaUsuarios(page).then( list => {
+    listaUsuarios(page,type).then( list => {
         list.forEach(user => {
             var userCard = createUserCard(user);
             lista.appendChild(userCard);

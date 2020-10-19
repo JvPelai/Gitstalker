@@ -48,7 +48,7 @@ header{
     border: black 1px solid;
     border-radius: 10px;
     padding-left: 10px;
-    width: 110%;
+    width: 114%;
     height: 25px;
     background-color: white;
     margin-left: 10px;
@@ -147,4 +147,22 @@ footer{
     grid-template-columns: 480px 480px 480px;
     grid-column-gap: 25px;
     
+}
+.search-option{
+    margin-left: 20px;
+}
+label{
+    font-size: 18px;
+    font-weight: normal;
+    color: #bbbbbb;
+}
+
+.filtra-data-config,.filtra-seguidores-config,.filtra-repos-config{
+    color: #bbbbbb;
+    display: inline-block;
+    position: relative;
+    border-left:1px solid black;
+    border-top: 1px solid black;
+    margin: 20px;
+    padding-left: 20px;
 }
