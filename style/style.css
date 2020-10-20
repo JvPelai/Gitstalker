@@ -153,8 +153,11 @@ footer{
     grid-column-gap: 25px;
     
 }
-.search-option{
+.search-option, .order-option{
+    display: inline-block;
     margin-left: 20px;
+    border-left: solid 1px black;
+    padding: 15px;
 }
 label{
     font-size: 18px;

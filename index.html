@@ -28,19 +28,47 @@
 
                 <h3>Filtrar busca:</h3>
                 <form id="filter-form">
+                    <div>
 
-                    <div class="search-option">
+                        <div class="search-option">
+                            
+                            <label for="tipo-busca">Tipo de busca:</label><br>
+                            
+                            <label for="tipo-busca">Usuários</label>
+                            <input type="radio" name="tipo-busca" value="User" checked>
+                            <label for="tipo-busca">Organizações</label>
+                            <input type="radio" name="tipo-busca" value="org"> 
+                            <br>
+                        </div>
                         
-                        <label for="tipo-busca">Tipo de busca:</label><br>
-                        
-                        <label for="tipo-busca">Usuários</label>
-                        <input type="radio" name="tipo-busca" value="User" checked>
-                        <label for="tipo-busca">Organizações</label>
-                        <input type="radio" name="tipo-busca" value="org"> 
-                        <br>
+                        <div class="order-option">
+                            <label for="sort-results">Ordenar resultados?</label>
+                            <input type="checkbox" name="sort-results" id="sort-results">
+                            
+                            <br>
+                            
+                            <label for="sort-option">Ordenar por:</label>
+                            
+                            <label for="sort-option">seguidores</label>
+                            <input type="radio" name="sort-option" value="&sort=followers" checked>
+                            
+                            <label for="sort-option">repositórios</label>
+                            <input type="radio" name="sort-option" value="&sort=repositories">
+                            
+                            <br>
+
+                            <label for="sort-order">Ordem: </label>
+
+                            <label for="sort-order">Decrescente</label>
+                            <input type="radio" name="sort-order" value="&order=desc" checked>
+
+                            <label for="sort-order">Crescente</label>
+                            <input type="radio" name="sort-order" value="&order=asc">
+                            
+                        </div>
                     </div>
-                    
-                    <div class="filtra-data-config">
+                        
+                        <div class="filtra-data-config">
                         <label for="filtro-data">Data de cadastro</label>
                         <input type="checkbox" name="filtro-data" id="filtro-data"><br>
 

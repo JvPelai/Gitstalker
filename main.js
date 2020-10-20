@@ -7,15 +7,16 @@ var fetchParams = {
     },
   };
 
-fetch("https://api.github.com/rate_limit",fetchParams).then( response => {return response.json()}).then(json => {console.log(json)})
+fetch("https://api.github.com/rate_limit",fetchParams).then( response => {return response.json()}).then(json => {console.log(json)});
 
 var lista = document.querySelector(".lista-usuarios");
 var pagina = document.querySelectorAll('.pagina');
 
+var filtros = "";
+
 var tiposDeBusca = document.getElementsByName("tipo-busca");
 var searchTypeParam;
 
-var filtros = ""
 
 for(tipo of tiposDeBusca){
     if(tipo.checked){
@@ -26,7 +27,52 @@ for(tipo of tiposDeBusca){
         searchTypeParam = this.value;
         console.log(searchTypeParam);
     })
+};
+
+var sortCheckBox = document.querySelector("#sort-results");
+var sortOptions = document.getElementsByName("sort-option");
+var sortOrderOptions = document.getElementsByName("sort-order");
+var sortParams = "";
+var sortOption;
+var sortOrder;
+
+function changeSortParams(){
+    if(sortCheckBox.checked){
+        sortParams = sortOption + sortOrder
+    }else{
+        sortParams = "";
+    }
+    console.log(sortParams, sortOption, sortOrder);
+};
+
+for(option of sortOptions){
+    if(option.checked){
+        sortOption = option.value;
+    }
+    option.addEventListener('change', function(){
+        sortOption = this.value;
+        changeSortParams()
+    })
+};
+for(option of sortOrderOptions){
+    if(option.checked){
+        sortOrder = option.value;
+    }
+    option.addEventListener('change', function(){
+        sortOrder = this.value;
+        changeSortParams()
+    })
 }
+
+sortCheckBox.addEventListener("change", function(){ 
+    if(this.checked){
+        sortParams = sortOption + sortOrder
+    }else{
+        sortParams = "";
+    }
+    console.log(sortParams,sortOption, sortOrder);
+});
+
 
 pagina.forEach(p => {
     p.addEventListener("click", function(event){
@@ -39,10 +85,10 @@ pagina.forEach(p => {
 var searchBar = document.querySelector("#main-search");
 var searchBtn = document.querySelector(".search-btn");
 
-searchBar.addEventListener("input",function(event){
+/*searchBar.addEventListener("input",function(event){
     event.preventDefault();
     paginaUsuarios("1",searchTypeParam,filtros);
-})
+})*/
 
 searchBtn.addEventListener("click", function(event){
     event.preventDefault();
@@ -81,17 +127,26 @@ function getFormData(){
         console.log(filtroReposCheck.checked, minRepos, maxRepos);
     }
 
-    var filters ={minDataCad,maxDataCad,minSeguidores,maxSeguidores,minRepos,maxRepos};
+    var filters ={filtroDataCheck,filtroSegCheck,filtroReposCheck,minDataCad,maxDataCad,minSeguidores,maxSeguidores,minRepos,maxRepos};
     return filters
     
 }
 
 function buildQueryString(filters){
+    var queryString = ""; 
     console.log(filters.maxRepos);
-    var dataCad = `+created:${filters.minDataCad}..${filters.maxDataCad}`;
-    var seguidores = `+followers:${filters.minSeguidores}..${filters.maxSeguidores}`;
-    var repos = `+repos:${filters.minRepos}..${filters.maxRepos}`;
-    var queryString = dataCad + seguidores + repos;
+    if(filters.filtroDataCheck.checked){
+        var dataCad = `+created:${filters.minDataCad}..${filters.maxDataCad}`;
+        queryString += dataCad;
+    }
+    if(filters.filtroSegCheck.checked){
+        var seguidores = `+followers:${filters.minSeguidores}..${filters.maxSeguidores}`;
+        queryString += seguidores;
+    }
+    if(filters.filtroReposCheck.checked){
+        var repos = `+repos:${filters.minRepos}..${filters.maxRepos}`;
+        queryString += repos;
+    }
     console.log(queryString)
     return queryString;
 }
