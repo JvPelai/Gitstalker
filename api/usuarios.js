@@ -1,6 +1,6 @@
 
 function listaUsuarios(page="1",type="User",filtros=""){
-    return fetch(`https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}&page=${page}`)
+    return fetch(`https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}&page=${page}`,fetchParams)
     .then( response => {
         return response.json();
     }).then( json => {

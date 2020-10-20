@@ -1,4 +1,11 @@
+var fetchParams = {
+    method: 'GET',
+    headers: {
+      Authorization: 'Basic ' + btoa("dc27a2a2db0ee9ec98a95e29f012db82ab9a0272"),
+    },
+  };
 
+fetch("https://api.github.com/rate_limit",fetchParams).then( response => {return response.json()}).then(json => {console.log(json)})
 
 var lista = document.querySelector(".lista-usuarios");
 var pagina = document.querySelectorAll('.pagina');
@@ -30,10 +37,15 @@ pagina.forEach(p => {
 var searchBar = document.querySelector("#main-search");
 var searchBtn = document.querySelector(".search-btn");
 
-searchBtn.addEventListener("click", function(event){
+searchBar.addEventListener("input",function(event){
     event.preventDefault();
     paginaUsuarios("1",searchTypeParam,filtros);
 })
+
+searchBtn.addEventListener("click", function(event){
+    event.preventDefault();
+    paginaUsuarios("1",searchTypeParam,filtros);
+});
 
 var submitBtn = document.querySelector("#filter-submit");
 
