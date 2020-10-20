@@ -192,3 +192,12 @@ label{
     background: #249b63;
     transition: 1s;
 }
+
+span{
+    color:red;
+    font-size: 18px;
+}
+.no-results{
+    display: none;
+    color: red;
+}

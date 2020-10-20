@@ -4,8 +4,19 @@ function listaUsuarios(page="1",type="User",filtros=""){
     .then( response => {
         return response.json();
     }).then( json => {
+        console.log(json.total_count);
+        if(json.total_count == 0){
+            noResults();
+            return
+        }else{
+            errorMsg.classList.add("no-results");
+        }
         return json.items
     })
+}
+
+function noResults(){
+    errorMsg.classList.remove("no-results")
 }
 
 function paginaUsuarios(page,type="User",filtros=""){

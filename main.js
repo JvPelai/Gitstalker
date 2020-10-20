@@ -1,7 +1,9 @@
+var errorMsg = document.querySelector(".no-results");
+
 var fetchParams = {
     method: 'GET',
     headers: {
-      Authorization: 'Basic ' + btoa("dc27a2a2db0ee9ec98a95e29f012db82ab9a0272"),
+        Authorization: 'Basic ' + btoa(`25f7d66e3d5c4f500b94682c9c8822ae645e8aa0`),
     },
   };
 
@@ -53,12 +55,19 @@ function getFormData(){
     var filtroDataCheck = document.getElementById("filtro-data");
     var filtroSegCheck = document.getElementById("filtro-seg");
     var filtroReposCheck = document.getElementById("filtro-repos");
+    var maxDataCad = document.getElementById("max-data-cad").value;
+    var minDataCad = document.getElementById("min-data-cad").value;
+    console.log(filtroDataCheck.checked,minDataCad, maxDataCad.value);
 
-    if(filtroDataCheck.checked){
-        var minDataCad = document.getElementById("min-data-cad").value;
-        var maxDataCad = document.getElementById("max-data-cad").value;
-        console.log(filtroDataCheck.checked,minDataCad, maxDataCad);
-    };
+    if(maxDataCad == "undefined" || maxDataCad == ""){
+        var today = new Date();
+
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+        maxDataCad = date;
+    }
+
+
 
     if(filtroSegCheck.checked){
         var minSeguidores = document.getElementById("min-seguidores").value;
@@ -91,6 +100,7 @@ submitBtn.addEventListener("click",function(event){
     event.preventDefault();
     console.log(event.target);
     filtros = buildQueryString(getFormData());
+    paginaUsuarios("1",searchTypeParam,filtros);
     console.log(filtros)
 })
 
