@@ -26,7 +26,7 @@ header{
     padding-bottom: 30px;
     background: #087441;
     position: relative;
-    width: 100%;
+    width: auto;
 }
 
 .search-box{
@@ -98,9 +98,46 @@ footer{
     margin-left: 41%;
 }
 
+#main-display{
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.lista-usuarios{
+    display: inline-block;
+    width: auto;
+    height: 1000px;
+    padding-right: 0px;
+    margin-right: 0px;
+    overflow-y: auto;
+    white-space: initial;
+}
+
+
+#filter-form{
+    display: inline-block;
+}
+.user-list-block{
+    display: inline-block;
+    width: 1040px;
+    height: 700px;
+    vertical-align: top;
+    white-space: initial;
+}
+
+hr{
+    margin-top: 20px;
+    position: relative;
+}
+
+.page-list{
+    font-size: 26px;
+}
+
 .paginas li{
     display: inline-block;
     color: black;
+    padding: 2px;
+    margin: 1px;
 }
 
 .paginas li:hover{
@@ -110,6 +147,7 @@ footer{
 }
 
 .user-card{
+    display: inline-block;
     border: 3px solid;
     border-radius: 5px;
     padding: 5px;
@@ -147,27 +185,23 @@ footer{
     text-decoration: underline;
 }
 
-.lista-usuarios{
-    display: grid;
-    grid-template-columns: 480px 480px 480px;
-    grid-column-gap: 25px;
-    
-}
+
+
 .search-option, .order-option{
-    display: inline-block;
     margin-left: 20px;
     border-left: solid 1px black;
     padding: 15px;
 }
 label{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: normal;
     color: #bbbbbb;
 }
 
+
+
 .filtra-data-config,.filtra-seguidores-config,.filtra-repos-config{
     color: #bbbbbb;
-    display: inline-block;
     position: relative;
     border-left:1px solid black;
     border-top: 1px solid black;

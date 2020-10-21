@@ -1,17 +1,37 @@
 var errorMsg = document.querySelector(".no-results");
+var currentPage = "1";
 
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(`25f7d66e3d5c4f500b94682c9c8822ae645e8aa0`),
+        Authorization: 'Basic ' + btoa(`0e2f2f728fbe61a5d85ac967dc46256415456d17`),
     },
   };
 
 fetch("https://api.github.com/rate_limit",fetchParams).then( response => {return response.json()}).then(json => {console.log(json)});
 
 var lista = document.querySelector(".lista-usuarios");
-var pagina = document.querySelectorAll('.pagina');
+var pageList = document.querySelector(".paginas");
 
+
+
+function paginate(totalCount){
+    var pags = Math.round(totalCount / 20);
+    pageList.innerHTML = "";
+    for(let i = 1; i <= pags; i++){
+        let pag = document.createElement("li");
+        pag.innerHTML = `<a class="pagina">${i}</a>`;
+        pageList.appendChild(pag);
+    }
+    var pagina = document.querySelectorAll('.pagina');
+    pagina.forEach(p => {
+        p.addEventListener("click", function(event){
+            event.preventDefault();
+            paginaUsuarios(p.textContent,searchTypeParam,filtros)
+            
+        });
+    });
+}
 var filtros = "";
 
 var tiposDeBusca = document.getElementsByName("tipo-busca");
@@ -74,13 +94,7 @@ sortCheckBox.addEventListener("change", function(){
 });
 
 
-pagina.forEach(p => {
-    p.addEventListener("click", function(event){
-        event.preventDefault();
-        paginaUsuarios(p.textContent,searchTypeParam,filtros)
-        
-    });
-});
+
 
 var searchBar = document.querySelector("#main-search");
 var searchBtn = document.querySelector(".search-btn");
@@ -140,10 +154,22 @@ function buildQueryString(filters){
         queryString += dataCad;
     }
     if(filters.filtroSegCheck.checked){
+        if(filters.minSeguidores == ""){
+            filters.minSeguidores = "0"
+        };
+        if(filters.maxSeguidores == ""){
+            filters.maxSeguidores = "999999999"
+        };
         var seguidores = `+followers:${filters.minSeguidores}..${filters.maxSeguidores}`;
         queryString += seguidores;
     }
     if(filters.filtroReposCheck.checked){
+        if(filters.minRepos == ""){
+            filters.minRepos = "0"
+        };
+        if(filters.maxRepos == ""){
+            filters.maxRepos = "999999999"
+        };
         var repos = `+repos:${filters.minRepos}..${filters.maxRepos}`;
         queryString += repos;
     }
