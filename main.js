@@ -4,7 +4,7 @@ var currentPage = "1";
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(`0e2f2f728fbe61a5d85ac967dc46256415456d17`),
+        Authorization: 'Basic ' + btoa(`9bb51465ae55d77159d3c4ce2109b158f86f31a5`),
     },
   };
 
