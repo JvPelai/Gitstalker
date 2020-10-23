@@ -130,11 +130,12 @@ footer{
 }
 .user-list-block{
     display: inline-block;
-    width: auto;
+    width: 40%;
     height: 700px;
     vertical-align: top;
     white-space: initial;
-    margin: auto 10%;
+    margin: auto 18%;
+    padding: auto
 }
 
 hr{
@@ -180,6 +181,7 @@ hr{
     display: inline-block;
     border-radius: 30px;
     
+    
 }
 
 .user-card img{
@@ -197,10 +199,15 @@ hr{
 .user-card div a:hover{
     text-decoration: underline;
 }
+.user-card p {
+    font-size: 18px;
+    display: inline-block;
+}
 
 
 
-.search-option, .order-option{
+
+.search-option, .order-option,.ordem-cadastro{
     margin-left: 20px;
     border-left: solid 1px black;
     padding: 15px;

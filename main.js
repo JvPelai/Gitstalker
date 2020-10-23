@@ -95,6 +95,9 @@ sortCheckBox.addEventListener("change", function(){
 
 
 
+//Ordem de cadastro
+var ordemCadastro = document.querySelector("#ordem-cadastro");
+
 
 var searchBar = document.querySelector("#main-search");
 var searchBtn = document.querySelector(".search-btn");
