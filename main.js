@@ -4,7 +4,7 @@ var currentPage = "1";
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(`9bb51465ae55d77159d3c4ce2109b158f86f31a5`),
+        Authorization: 'Basic ' + btoa(`b7458d3be12b3c3a6d6753ad22e92a2e3c17d448`),
     },
   };
 
@@ -49,6 +49,8 @@ for(tipo of tiposDeBusca){
     })
 };
 
+var orderCadBox = document.querySelector(".ordem-cadastro");
+var sortBox = document.querySelector("#sort-box")
 var sortCheckBox = document.querySelector("#sort-results");
 var sortOptions = document.getElementsByName("sort-option");
 var sortOrderOptions = document.getElementsByName("sort-order");
@@ -87,8 +89,12 @@ for(option of sortOrderOptions){
 sortCheckBox.addEventListener("change", function(){ 
     if(this.checked){
         sortParams = sortOption + sortOrder
+        sortBox.classList.remove("hidden-order");
+        orderCadBox.classList.add("hidden-order");
     }else{
         sortParams = "";
+        sortBox.classList.add("hidden-order");
+        orderCadBox.classList.remove("hidden-order");
     }
     console.log(sortParams,sortOption, sortOrder);
 });

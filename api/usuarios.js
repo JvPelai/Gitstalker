@@ -1,4 +1,4 @@
-var userObjectArray =[];
+
 
 function listaUsuarios(page="1",type="User",filtros=""){
     currentPage = page;
@@ -26,12 +26,8 @@ function paginaUsuarios(page,type="User",filtros=""){
     lista.innerHTML = "";
         listaUsuarios(page,type,filtros).then( list => {
             list.forEach(user => {
-                userData(user.login).then( userProf => {
-                    console.log(userProf.created_at);
-                    var userCard = createUserCard(userProf);
-                    lista.appendChild(userCard);
-                });
-                
+                var userCard = createUserCard(user);
+                lista.appendChild(userCard);
             });
         });
     };       
@@ -42,15 +38,11 @@ function paginaUsuarios(page,type="User",filtros=""){
 
 lista.addEventListener("scroll",function(){
     if(lista.scrollHeight == (lista.offsetHeight + lista.scrollTop)){
-        console.log("Hora de carregar mais usuarios!");
-    
+        console.log("Hora de carregar mais usuarios!"); 
             listaUsuarios(parseInt(currentPage)+1,searchTypeParam,filtros).then( list => {
                 list.forEach(user => {
-                    userData(user.login).then( userProf => {
-                        console.log(userProf.created_at);
-                        var userCard = createUserCard(userProf);
-                        lista.appendChild(userCard);
-                    });
+                    var userCard = createUserCard(user);
+                    lista.appendChild(userCard);
                 });
             });
         };
@@ -96,37 +88,26 @@ function userData(name){
 
 
 
-function createUserArray(){
-    userObjectArray = [];
+async function createUserArray(){
+    var arr = [];
     for(let i = 1; i <= pageList.children.length; i++){
-        listaUsuarios(String(i),searchTypeParam,filtros).then( list => {
-            list.forEach(user => {
-                userData(user.login).then( userProf => {
-                    userObjectArray.push(userProf);
-                    userObjectArray.sort(ordenaData);
+        await listaUsuarios(String(i),searchTypeParam,filtros).then(list => {
+            list.forEach( user => {
+                 userData(user.login).then( userProf => {
+                    arr.push(userProf);
+                    if(!sortCheckBox.checked){
+                        arr.sort(ordenaData);
+                    }
                 });
             })
         });
     }
+    console.log(!sortCheckBox.checked);
+    console.log(arr)
+    return arr
 }
 
 
 
 paginaUsuarios(currentPage);
 
-/*
-var xhr = new XMLHttpRequest();
-                xhr.open("GET",user.url);
-                
-                xhr.addEventListener("load", function(){
-                    var resposta = xhr.responseText;
-                    
-                    var userObject = JSON.parse(resposta);
-                    
-                    userObjectArray.push(userObject);
-                    userObjectArray.sort(ordenaData)
-                    
-                });
-                
-                xhr.send();
-*/ 
