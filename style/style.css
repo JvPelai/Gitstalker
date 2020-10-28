@@ -16,6 +16,8 @@ input::-webkit-input-placeholder{
     opacity: 0.4;
 }
 
+input{}
+
 #logo{
     padding: 0%;
     width: 220px;
@@ -237,7 +239,7 @@ label{
     font-weight: bold;
     color: black;
     margin: 20px;
-    width: 260px;
+    width: 180px;
     height: 35px;
     background: #087441;
     border-radius: 5px;
@@ -261,4 +263,8 @@ span{
 
 .hidden-order{
     display: none;
+}
+
+#min-repos,#max-repos,#min-seguidores,#max-seguidores{
+    width: 120px;
 }

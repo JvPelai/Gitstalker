@@ -4,7 +4,7 @@ var currentPage = "1";
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(`b7458d3be12b3c3a6d6753ad22e92a2e3c17d448`),
+        Authorization: 'Basic ' + btoa(`e5ae8c022c22e2be1f22d70bf2faa51d074610f8`),
     },
   };
 
@@ -188,6 +188,9 @@ function buildQueryString(filters){
 
 submitBtn.addEventListener("click",function(event){
     event.preventDefault();
+    if(!sortCheckBox.checked){
+        localStorage.clear();
+    }
     console.log(event.target);
     filtros = buildQueryString(getFormData());
     paginaUsuarios("1",searchTypeParam,filtros);

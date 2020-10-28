@@ -22,32 +22,62 @@ function noResults(){
 }
 
 
-function paginaUsuarios(page,type="User",filtros=""){
+async function paginaUsuarios(page,type="User",filtros=""){
     lista.innerHTML = "";
+    currentPage = page;
+    if(!sortCheckBox.checked){
+        await createUserArray().then(array => {
+            for(let i = 0; i < 20; i++){
+                if(lista.childElementCount == array.length){
+                    return
+                }
+                var index = i + ((parseInt(page) -1) * 20);
+                var userCard = createUserCard(array[index]);
+                lista.appendChild(userCard); 
+            };
+        }); 
+    }else{
         listaUsuarios(page,type,filtros).then( list => {
             list.forEach(user => {
                 var userCard = createUserCard(user);
-                lista.appendChild(userCard);
+                lista.appendChild(userCard);      
             });
         });
-    };       
+    }
+};       
 
 
 
 
 
-lista.addEventListener("scroll",function(){
+lista.addEventListener("scroll",async function(){
+    if(parseInt(currentPage) >= pageList.childElementCount){
+        return
+    };
     if(lista.scrollHeight == (lista.offsetHeight + lista.scrollTop)){
-        console.log("Hora de carregar mais usuarios!"); 
+        console.log("Hora de carregar mais usuarios!");
+        if(!sortCheckBox.checked){
+            await createUserArray().then(array => {
+                console.log(array);
+                for(let i = 0; i < 20; i++){
+                    if(lista.childElementCount == array.length){
+                        return
+                    }
+                    var userCard = createUserCard(array[lista.childElementCount]);
+                    lista.appendChild(userCard); 
+                };
+            }) 
+        }else{
             listaUsuarios(parseInt(currentPage)+1,searchTypeParam,filtros).then( list => {
                 list.forEach(user => {
                     var userCard = createUserCard(user);
                     lista.appendChild(userCard);
                 });
             });
-        };
+        }
+    };
 
-    });
+});
 
 
 function createUserCard(user){
@@ -90,24 +120,25 @@ function userData(name){
 
 async function createUserArray(){
     var arr = [];
-    for(let i = 1; i <= pageList.children.length; i++){
-        await listaUsuarios(String(i),searchTypeParam,filtros).then(list => {
-            list.forEach( user => {
-                 userData(user.login).then( userProf => {
-                    arr.push(userProf);
-                    if(!sortCheckBox.checked){
-                        arr.sort(ordenaData);
-                    }
+    if(!localStorage.getItem("userObjectArray")){
+        for(let i = 1; i <= pageList.children.length + 1 ; i++){
+            await listaUsuarios(String(i),searchTypeParam,filtros).then(list => {
+                list.forEach( user => {
+                    userData(user.login).then( userProf => {
+                        arr.push(userProf);
+                    });
                 });
-            })
-        });
-    }
-    console.log(!sortCheckBox.checked);
-    console.log(arr)
-    return arr
-}
-
+            });
+        };
+        localStorage.setItem("userObjectArray",JSON.stringify(arr));
+        return arr.sort(ordenaData)
+    }else{
+        return JSON.parse(localStorage.getItem("userObjectArray")).sort(ordenaData)
+    }; 
+    
+};
 
 
 paginaUsuarios(currentPage);
 
+//JSON.parse(localStorage.getItem("userObjectArray")).sort(ordenaData).find(user => user.login == "JvPelai")

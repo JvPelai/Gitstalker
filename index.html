@@ -46,10 +46,10 @@
                             
                             <div class="order-option">
                                 <label for="sort-results">Ordenar resultados?</label>
-                                <input type="checkbox" name="sort-results" id="sort-results">
+                                <input type="checkbox" name="sort-results" id="sort-results" checked>
                                 
                                 <br>
-                                <div id="sort-box" class="hidden-order">
+                                <div id="sort-box">
                                     <label for="sort-option">Ordenar por:</label><br>
                                     
                                     <label for="sort-option">seguidores</label>
@@ -70,7 +70,7 @@
                                 </div>                       
                             </div>
 
-                            <div class="ordem-cadastro">
+                            <div class="ordem-cadastro hidden-order">
                                 <label for="ordem-cadastro">Mostrar cadastros:</label><br>
                                 <select id="ordem-cadastro">
                                     <option value="mais-recentes">Mais recentes</option>
@@ -113,7 +113,7 @@
                         <label for="min-repos">A partir de:</label><br>
                         <input type="number" id="min-repos" name="min-repos" min="0" max="100.000"><br>
                         
-                        <label for="max-seguidores">Até:</label><br>
+                        <label for="max-repos">Até:</label><br>
                         <input type="number" id="max-repos" name="max-repos" min="1">     
                     </div>
                     <br>
