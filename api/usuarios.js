@@ -136,7 +136,6 @@ async function createUserArray(){
                     //return list[0];
                 //}
                 list.forEach( user => {
-                    
                     userData(user.login).then( userProf => {
                         arr.push(userProf);
                     });
@@ -145,6 +144,9 @@ async function createUserArray(){
         };
         localStorage.setItem("userObjectArray",JSON.stringify(arr));
         currentPage = "1";
+        console.log(typeof(arr));
+        console.log(arr.items);
+        console.log(arr.sort(ordenaData));
         return arr.sort(ordenaData)
     }else{
         return JSON.parse(localStorage.getItem("userObjectArray")).sort(ordenaData)
