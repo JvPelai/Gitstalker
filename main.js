@@ -1,10 +1,11 @@
 var errorMsg = document.querySelector(".no-results");
 var currentPage = "1";
+var telaCarregamento = document.querySelector(".tela-carregamento")
 
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(`e5ae8c022c22e2be1f22d70bf2faa51d074610f8`),
+        Authorization: 'Basic ' + btoa(`920c5a8fe4582fe20147108bfab7b4d03e265cd7`),
     },
   };
 
@@ -108,10 +109,16 @@ var ordemCadastro = document.querySelector("#ordem-cadastro");
 var searchBar = document.querySelector("#main-search");
 var searchBtn = document.querySelector(".search-btn");
 
-/*searchBar.addEventListener("input",function(event){
+let timeout = null;
+
+searchBar.addEventListener("input", function(event){
     event.preventDefault();
-    paginaUsuarios("1",searchTypeParam,filtros);
-})*/
+    clearTimeout(timeout);
+    timeout = setTimeout(function(){
+        localStorage.clear();
+        paginaUsuarios("1",searchTypeParam,filtros);
+    },1000);    
+});
 
 searchBtn.addEventListener("click", function(event){
     event.preventDefault();

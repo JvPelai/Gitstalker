@@ -16,8 +16,6 @@ input::-webkit-input-placeholder{
     opacity: 0.4;
 }
 
-input{}
-
 #logo{
     padding: 0%;
     width: 220px;
@@ -268,3 +266,33 @@ span{
 #min-repos,#max-repos,#min-seguidores,#max-seguidores{
     width: 120px;
 }
+
+.tela-carregamento{
+    margin-left: 33%;
+    position: absolute;
+    margin-top: 14%;
+
+}
+.tela-carregamento h4{
+    margin-bottom: 6%;
+}
+
+.loading{
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #279e4b; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin-left: 33%;
+}
+
+@keyframes spin{
+    0% { transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

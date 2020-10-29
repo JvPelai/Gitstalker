@@ -18,32 +18,41 @@ function listaUsuarios(page="1",type="User",filtros=""){
 }
 
 function noResults(){
-    errorMsg.classList.remove("no-results")
+    errorMsg.classList.remove("no-results");
+    telaCarregamento.classList.add("hidden-order");
 }
 
 
 async function paginaUsuarios(page,type="User",filtros=""){
     lista.innerHTML = "";
     currentPage = page;
+    telaCarregamento.classList.remove("hidden-order");
     if(!sortCheckBox.checked){
         await createUserArray().then(array => {
             for(let i = 0; i < 20; i++){
-                if(lista.childElementCount == array.length){
+                if(lista.childElementCount + 1 == array.length){
                     return
-                }
+                };
+                if(array.length == 0){
+                    var userCard = createUserCard(array);
+                    lista.appendChild(userCard);
+                    return
+                };
                 var index = i + ((parseInt(page) -1) * 20);
                 var userCard = createUserCard(array[index]);
                 lista.appendChild(userCard); 
             };
+            
         }); 
     }else{
-        listaUsuarios(page,type,filtros).then( list => {
+        await listaUsuarios(page,type,filtros).then( list => {
             list.forEach(user => {
                 var userCard = createUserCard(user);
                 lista.appendChild(userCard);      
             });
         });
     }
+    telaCarregamento.classList.add("hidden-order");
 };       
 
 
@@ -51,14 +60,14 @@ async function paginaUsuarios(page,type="User",filtros=""){
 
 
 lista.addEventListener("scroll",async function(){
-    if(parseInt(currentPage) >= pageList.childElementCount){
+    if(parseInt(currentPage) > pageList.childElementCount){
         return
     };
     if(lista.scrollHeight == (lista.offsetHeight + lista.scrollTop)){
         console.log("Hora de carregar mais usuarios!");
         if(!sortCheckBox.checked){
             await createUserArray().then(array => {
-                console.log(array);
+                currentPage = String(parseInt(currentPage) + 1);
                 for(let i = 0; i < 20; i++){
                     if(lista.childElementCount == array.length){
                         return
@@ -123,7 +132,11 @@ async function createUserArray(){
     if(!localStorage.getItem("userObjectArray")){
         for(let i = 1; i <= pageList.children.length + 1 ; i++){
             await listaUsuarios(String(i),searchTypeParam,filtros).then(list => {
+                //if(list.length <= 1){
+                    //return list[0];
+                //}
                 list.forEach( user => {
+                    
                     userData(user.login).then( userProf => {
                         arr.push(userProf);
                     });
@@ -131,6 +144,7 @@ async function createUserArray(){
             });
         };
         localStorage.setItem("userObjectArray",JSON.stringify(arr));
+        currentPage = "1";
         return arr.sort(ordenaData)
     }else{
         return JSON.parse(localStorage.getItem("userObjectArray")).sort(ordenaData)
