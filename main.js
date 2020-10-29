@@ -5,7 +5,7 @@ var telaCarregamento = document.querySelector(".tela-carregamento")
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(``),
+        Authorization: 'Basic ' + btoa(`982116cf75f546a66e0cdf18ad2652bd011c911d`),
     },
   };
 
@@ -122,6 +122,7 @@ searchBar.addEventListener("input", function(event){
 
 searchBtn.addEventListener("click", function(event){
     event.preventDefault();
+    localStorage.clear();
     paginaUsuarios("1",searchTypeParam,filtros);
 });
 

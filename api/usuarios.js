@@ -29,12 +29,14 @@ async function paginaUsuarios(page,type="User",filtros=""){
     telaCarregamento.classList.remove("hidden-order");
     if(!sortCheckBox.checked){
         await createUserArray().then(array => {
+            console.log(array[0]);
+            console.log(array.length);
             for(let i = 0; i < 20; i++){
-                if(lista.childElementCount + 1 == array.length){
+                if(lista.childElementCount == array.length){
                     return
                 };
-                if(array.length == 0){
-                    var userCard = createUserCard(array);
+                if(array.length == 1){
+                    var userCard = createUserCard(array[0]);
                     lista.appendChild(userCard);
                     return
                 };
@@ -132,9 +134,12 @@ async function createUserArray(){
     if(!localStorage.getItem("userObjectArray")){
         for(let i = 1; i <= pageList.children.length + 1 ; i++){
             await listaUsuarios(String(i),searchTypeParam,filtros).then(list => {
-                //if(list.length <= 1){
-                    //return list[0];
-                //}
+                console.log(list.length);
+                console.log(list[0]);
+                if(list.length == 1){
+                    arr.push(list[0]);
+                    return
+                };
                 list.forEach( user => {
                     userData(user.login).then( userProf => {
                         arr.push(userProf);
@@ -144,10 +149,14 @@ async function createUserArray(){
         };
         localStorage.setItem("userObjectArray",JSON.stringify(arr));
         currentPage = "1";
-        console.log(typeof(arr));
-        console.log(arr.items);
+        console.log(arr.length);
+        console.log(arr[0]);
         console.log(arr.sort(ordenaData));
-        return arr.sort(ordenaData)
+        if(arr.length <= 1){
+            return arr
+        }else{
+            return arr.sort(ordenaData)
+        };
     }else{
         return JSON.parse(localStorage.getItem("userObjectArray")).sort(ordenaData)
     }; 
