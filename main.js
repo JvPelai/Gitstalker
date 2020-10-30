@@ -2,12 +2,13 @@ var errorMsg = document.querySelector(".no-results");
 var currentPage = "1";
 var telaCarregamento = document.querySelector(".tela-carregamento")
 
-
+var accessToken = {token: "50aca22dda5474d5a46ca31ab0831ad883488aab"};
+var auth = accessToken.token;
 
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa("c46f8cef33dd1c60096a24f98ff41f2ebc8af7a3"),
+        Authorization: 'Basic ' + btoa(auth),
         
     },
   };
