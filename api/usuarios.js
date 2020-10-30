@@ -94,7 +94,7 @@ function createUserCard(user){
     var avatar = document.createElement("div");
     var name = document.createElement("div");
     avatar.innerHTML = `<img src="${user.avatar_url}">`
-    name.innerHTML = `<a href="/user.html?username=${user.login}">${user.login}</a>`;
+    name.innerHTML = `<a href="Gitstalker/user.html?username=${user.login}">${user.login}</a>`;
     card.appendChild(avatar);
     card.appendChild(name);
     return card
