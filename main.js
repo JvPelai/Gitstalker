@@ -5,7 +5,7 @@ var telaCarregamento = document.querySelector(".tela-carregamento")
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(`982116cf75f546a66e0cdf18ad2652bd011c911d`),
+        Authorization: 'Basic ' + btoa(`accessToken`),
     },
   };
 
