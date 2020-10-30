@@ -2,10 +2,13 @@ var errorMsg = document.querySelector(".no-results");
 var currentPage = "1";
 var telaCarregamento = document.querySelector(".tela-carregamento")
 
+
+
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa(`accessToken`),
+        Authorization: 'Basic ' + btoa("6bfcc48d1ada8839a42b355d5531a769752b4d56"),
+        
     },
   };
 
