@@ -7,10 +7,12 @@ var telaCarregamento = document.querySelector(".tela-carregamento")
 var fetchParams = {
     method: 'GET',
     headers: {
-        Authorization: 'Basic ' + btoa("6bfcc48d1ada8839a42b355d5531a769752b4d56"),
+        Authorization: 'Basic ' + btoa("c46f8cef33dd1c60096a24f98ff41f2ebc8af7a3"),
         
     },
   };
+
+
 
 fetch("https://api.github.com/rate_limit",fetchParams).then( response => {return response.json()}).then(json => {console.log(json)});
 
@@ -44,12 +46,10 @@ var searchTypeParam;
 
 for(tipo of tiposDeBusca){
     if(tipo.checked){
-        console.log(typeof(tipo.value))
         searchTypeParam = tipo.value
     }
     tipo.addEventListener('change', function(){
         searchTypeParam = this.value;
-        console.log(searchTypeParam);
     })
 };
 
@@ -68,7 +68,6 @@ function changeSortParams(){
     }else{
         sortParams = "";
     }
-    console.log(sortParams, sortOption, sortOrder);
 };
 
 for(option of sortOptions){
@@ -100,7 +99,6 @@ sortCheckBox.addEventListener("change", function(){
         sortBox.classList.add("hidden-order");
         orderCadBox.classList.remove("hidden-order");
     }
-    console.log(sortParams,sortOption, sortOrder);
 });
 
 
@@ -137,7 +135,6 @@ function getFormData(){
     var filtroReposCheck = document.getElementById("filtro-repos");
     var maxDataCad = document.getElementById("max-data-cad").value;
     var minDataCad = document.getElementById("min-data-cad").value;
-    console.log(filtroDataCheck.checked,minDataCad, maxDataCad.value);
 
     if(maxDataCad == "undefined" || maxDataCad == ""){
         var today = new Date();
@@ -152,13 +149,12 @@ function getFormData(){
     if(filtroSegCheck.checked){
         var minSeguidores = document.getElementById("min-seguidores").value;
         var maxSeguidores = document.getElementById("max-seguidores").value;
-        console.log(filtroSegCheck.checked, minSeguidores, maxSeguidores);
     };
 
     if(filtroReposCheck.checked){
         var minRepos = document.getElementById("min-repos").value;
         var maxRepos = document.getElementById("max-repos").value;
-        console.log(filtroReposCheck.checked, minRepos, maxRepos);
+        
     }
 
     var filters ={filtroDataCheck,filtroSegCheck,filtroReposCheck,minDataCad,maxDataCad,minSeguidores,maxSeguidores,minRepos,maxRepos};
@@ -168,7 +164,6 @@ function getFormData(){
 
 function buildQueryString(filters){
     var queryString = ""; 
-    console.log(filters.maxRepos);
     if(filters.filtroDataCheck.checked){
         var dataCad = `+created:${filters.minDataCad}..${filters.maxDataCad}`;
         queryString += dataCad;
@@ -193,7 +188,6 @@ function buildQueryString(filters){
         var repos = `+repos:${filters.minRepos}..${filters.maxRepos}`;
         queryString += repos;
     }
-    console.log(queryString)
     return queryString;
 }
 
@@ -202,10 +196,8 @@ submitBtn.addEventListener("click",function(event){
     if(!sortCheckBox.checked){
         localStorage.clear();
     }
-    console.log(event.target);
     filtros = buildQueryString(getFormData());
-    paginaUsuarios("1",searchTypeParam,filtros);
-    console.log(filtros)
+    paginaUsuarios("1",searchTypeParam,filtros);  
 })
 
 

@@ -29,8 +29,6 @@ async function paginaUsuarios(page,type="User",filtros=""){
     telaCarregamento.classList.remove("hidden-order");
     if(!sortCheckBox.checked){
         await createUserArray().then(array => {
-            console.log(array[0]);
-            console.log(array.length);
             for(let i = 0; i < 20; i++){
                 if(lista.childElementCount == array.length){
                     return
@@ -66,7 +64,6 @@ lista.addEventListener("scroll",async function(){
         return
     };
     if(lista.scrollHeight == (lista.offsetHeight + lista.scrollTop)){
-        console.log("Hora de carregar mais usuarios!");
         if(!sortCheckBox.checked){
             await createUserArray().then(array => {
                 currentPage = String(parseInt(currentPage) + 1);
@@ -122,7 +119,6 @@ function userData(name){
     .then( response => {
         return response.json();
     }).then( json => {
-        //console.log(json)
         return json
     })
 };
@@ -134,8 +130,6 @@ async function createUserArray(){
     if(!localStorage.getItem("userObjectArray")){
         for(let i = 1; i <= pageList.children.length + 1 ; i++){
             await listaUsuarios(String(i),searchTypeParam,filtros).then(list => {
-                console.log(list.length);
-                console.log(list[0]);
                 if(list.length == 1){
                     arr.push(list[0]);
                     return
@@ -149,9 +143,6 @@ async function createUserArray(){
         };
         localStorage.setItem("userObjectArray",JSON.stringify(arr));
         currentPage = "1";
-        console.log(arr.length);
-        console.log(arr[0]);
-        console.log(arr.sort(ordenaData));
         if(arr.length <= 1){
             return arr
         }else{

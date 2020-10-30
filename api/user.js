@@ -11,7 +11,6 @@ function userData(name){
     .then( response => {
         return response.json();
     }).then( json => {
-        console.log(json)
         return json
     })
 };
@@ -75,7 +74,6 @@ function userProfile(username){
         var repos = obj.public_repos;
         var location = obj.location;
         var user = {login,name,avatar,bio,company,email,followers,following,repos,location};
-        console.log(user);
         createUserPage(user);
     });
 }
