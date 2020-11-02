@@ -254,8 +254,8 @@ span{
     color:red;
     font-size: 18px;
 }
-.no-results{
-    display: none;
+.error-msg{
+    position: absolute;
     color: red;
 }
 

@@ -1,12 +1,10 @@
 // TODO: organizar sempre as variaveis globais (utilizadas em mais de um arquivo), no topo do script
-var errorMsg = document.querySelector(".no-results");
+var errorMsg = document.querySelector(".error-msg");
 var currentPage = "1";
 var telaCarregamento = document.querySelector(".tela-carregamento");
 var lista = document.querySelector(".lista-usuarios");
 var pageList = document.querySelector(".paginas");
 var orderCadBox = document.querySelector(".ordem-cadastro");
-var sortBox = document.querySelector("#sort-box");
-var sortCheckBox = document.querySelector("#sort-results");
 var sortOptions = document.getElementsByName("sort-option");
 var sortOrderOptions = document.getElementsByName("sort-order");
 var sortParams = "";
@@ -39,23 +37,6 @@ function fetchRateLimit() {
 // HACK: é sempre bom deixar claro o momento em que são chamadas as funções. Não é boa pratica deixar fetches soltos pela aplicação
 fetchRateLimit();
 
-function paginate(totalCount) {
-  var pags = Math.round(totalCount / 20);
-  pageList.innerHTML = "";
-  for (let i = 1; i <= pags; i++) {
-    let pag = document.createElement("li");
-    pag.innerHTML = `<a class="pagina">${i}</a>`;
-    pageList.appendChild(pag);
-  }
-  var pagina = document.querySelectorAll(".pagina");
-  pagina.forEach((p) => {
-    p.addEventListener("click", function (event) {
-      event.preventDefault();
-      paginaUsuarios(p.textContent, searchTypeParam, filtros);
-    });
-  });
-}
-
 var tiposDeBusca = document.getElementsByName("tipo-busca");
 for (tipo of tiposDeBusca) {
   if (tipo.checked) {
@@ -67,11 +48,7 @@ for (tipo of tiposDeBusca) {
 }
 
 function changeSortParams() {
-  if (sortCheckBox.checked) {
-    sortParams = sortOption + sortOrder;
-  } else {
-    sortParams = "";
-  }
+  sortParams = sortOption + sortOrder;   
 }
 
 // TODO: organizar melhor a ordem de execução, o código está muito largado.
@@ -95,20 +72,7 @@ for (option of sortOrderOptions) {
   });
 }
 
-sortCheckBox.addEventListener("change", function () {
-  if (this.checked) {
-    sortParams = sortOption + sortOrder;
-    sortBox.classList.remove("hidden-order");
-    orderCadBox.classList.add("hidden-order");
-  } else {
-    sortParams = "";
-    sortBox.classList.add("hidden-order");
-    orderCadBox.classList.remove("hidden-order");
-  }
-});
 
-//Ordem de cadastro
-var ordemCadastro = document.querySelector("#ordem-cadastro");
 
 var searchBar = document.querySelector("#main-search");
 var searchBtn = document.querySelector(".search-btn");
@@ -119,14 +83,12 @@ searchBar.addEventListener("input", function (event) {
   event.preventDefault();
   clearTimeout(timeout);
   timeout = setTimeout(function () {
-    localStorage.clear();
     paginaUsuarios("1", searchTypeParam, filtros);
   }, 1000);
 });
 
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  localStorage.clear();
   paginaUsuarios("1", searchTypeParam, filtros);
 });
 
@@ -142,12 +104,26 @@ function getFormData() {
   if (maxDataCad == "undefined" || maxDataCad == "") {
     var today = new Date();
 
+    var dd = today.getDate();
+
+    var mm = today.getMonth()+1;
+
+    var yyyy = today.getFullYear();
+
+    if(dd<10){
+      dd='0'+dd;
+    } 
+
+    if(mm<10){
+      mm='0'+mm;
+    } 
+
     var date =
-      today.getFullYear() +
+      yyyy +
       "-" +
-      (today.getMonth() + 1) +
+      (mm + 1) +
       "-" +
-      today.getDate();
+      dd;
 
     maxDataCad = date;
   }
@@ -202,14 +178,12 @@ function buildQueryString(filters) {
     var repos = `+repos:${filters.minRepos}..${filters.maxRepos}`;
     queryString += repos;
   }
+  console.log(queryString)
   return queryString;
 }
 
 submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  if (!sortCheckBox.checked) {
-    localStorage.clear();
-  }
   filtros = buildQueryString(getFormData());
   paginaUsuarios("1", searchTypeParam, filtros);
 });

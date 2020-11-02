@@ -46,7 +46,6 @@
                                 <input type="radio" name="tipo-busca" value="User" checked>
                                 <label for="tipo-busca">Organizações</label>
                                 <input type="radio" name="tipo-busca" value="org"> 
-                                <br>
                             </div>
                             
                             <div class="order-option">
@@ -54,10 +53,6 @@
                                 0 -  não está no escopo do projeto
                                 1 - ela não faz sentido nenhum 
                                 2 - gera uma consulta desnecessaria na API quando desmarcado -->
-                                <label for="sort-results">Ordenar resultados?</label>
-                                <input type="checkbox" name="sort-results" id="sort-results" checked>
-                                
-                                <br>
                                 <div id="sort-box">
                                     <label for="sort-option">Ordenar por:</label><br>
                                     
@@ -137,10 +132,10 @@
                 <div class="user-list-block">
                     <h2>Usuários:</h2><br>
                     
+                    <span class="error-msg hidden-order"><br>Nenhum resultado encontrado... tente alterar as configurações de busca.</span>
                     
                     
                     <div class="lista-usuarios">
-                        <span class="no-results"><br>Nenhum resultado encontrado... tente alterar as configurações de busca.</span>
                         
                     </div>
                 </div>

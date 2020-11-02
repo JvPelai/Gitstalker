@@ -10,44 +10,21 @@ function listaUsuarios(page = "1", type = "User", filtros = "") {
       })
       // TODO: a responsabilidade dessa função é retornar a lista, quem chama ela, deve saber o que fazer caso não receba dados
       .then((json) => {
-        if (json.total_count == 0) {
-          noResults();
-          return;
-        } else {
-          errorMsg.classList.add("no-results");
-          paginate(json.total_count);
-        }
         return json.items;
       })
   );
 }
 
 function noResults() {
-  errorMsg.classList.remove("no-results");
+  errorMsg.classList.remove("hidden-order");
   telaCarregamento.classList.add("hidden-order");
 }
 
 async function paginaUsuarios(page, type = "User", filtros = "") {
   lista.innerHTML = "";
+  errorMsg.classList.add("hidden-order");
   currentPage = page;
   telaCarregamento.classList.remove("hidden-order");
-  if (!sortCheckBox.checked) {
-    await createUserArray().then((array) => {
-      for (let i = 0; i < 20; i++) {
-        if (lista.childElementCount == array.length) {
-          return;
-        }
-        if (array.length == 1) {
-          var userCard = createUserCard(array[0]);
-          lista.appendChild(userCard);
-          return;
-        }
-        var index = i + (parseInt(page) - 1) * 20;
-        var userCard = createUserCard(array[index]);
-        lista.appendChild(userCard);
-      }
-    });
-  } else {
     // await listaUsuarios(page,type,filtros).then( list => {
     //     list.forEach(user => {
     //         var userCard = createUserCard(user);
@@ -57,32 +34,21 @@ async function paginaUsuarios(page, type = "User", filtros = "") {
 
     // HACK: nunca usar await e then juntos isso não é uma boa pratica. Se possivel use sempre async/await.
     // Veja no exemplo abaixo, como o codigo fica até mais organizado.
-    const list = await listaUsuarios(page, type, filtros);
-    list.forEach((user) => {
-      var userCard = createUserCard(user);
-      lista.appendChild(userCard);
-    });
-  }
+  const list = await listaUsuarios(page, type, filtros);
+  console.log(list)
+  if(list.length == 0){
+    noResults();
+  };
+  list.forEach((user) => {
+  var userCard = createUserCard(user);
+  lista.appendChild(userCard);
+  });
+  
   telaCarregamento.classList.add("hidden-order");
 }
 
 lista.addEventListener("scroll", async function () {
-  if (parseInt(currentPage) > pageList.childElementCount) {
-    return;
-  }
   if (lista.scrollHeight == lista.offsetHeight + lista.scrollTop) {
-    if (!sortCheckBox.checked) {
-      await createUserArray().then((array) => {
-        currentPage = String(parseInt(currentPage) + 1);
-        for (let i = 0; i < 20; i++) {
-          if (lista.childElementCount == array.length) {
-            return;
-          }
-          var userCard = createUserCard(array[lista.childElementCount]);
-          lista.appendChild(userCard);
-        }
-      });
-    } else {
       const list = await listaUsuarios(
         parseInt(currentPage) + 1,
         searchTypeParam,
@@ -93,7 +59,6 @@ lista.addEventListener("scroll", async function () {
         lista.appendChild(userCard);
       });
     }
-  }
 });
 
 function createUserCard(user) {
@@ -108,7 +73,6 @@ function createUserCard(user) {
   return card;
 }
 
-function orderByCreation() {}
 
 function ordenaData(a, b) {
   if (ordemCadastro.value == "mais-antigos") {
@@ -136,34 +100,7 @@ function userData(name) {
     });
 }
 
-// TODO: remover essa função. Ela é desnecessária, só existe por causa do checkbox que deve ser removido tb
-async function createUserArray() {
-  var arr = [];
-  if (!localStorage.getItem("userObjectArray")) {
-    for (let i = 1; i <= pageList.children.length + 1; i++) {
-      await listaUsuarios(String(i), searchTypeParam, filtros).then((list) => {
-        if (list.length == 1) {
-          arr.push(list[0]);
-          return;
-        }
-        list.forEach((user) => {
-          userData(user.login).then((userProf) => {
-            arr.push(userProf);
-          });
-        });
-      });
-    }
-    localStorage.setItem("userObjectArray", JSON.stringify(arr));
-    currentPage = "1";
-    if (arr.length <= 1) {
-      return arr;
-    } else {
-      return arr.sort(ordenaData);
-    }
-  } else {
-    return JSON.parse(localStorage.getItem("userObjectArray")).sort(ordenaData);
-  }
-}
+
 
 paginaUsuarios(currentPage);
 
