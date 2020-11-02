@@ -2,7 +2,7 @@ function listaUsuarios(page = "1", type = "User", filtros = "") {
   currentPage = page;
   return (
     fetch(
-      `https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}${sortParams}&per_page=20&page=${page}`,
+      `https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}${sortParams}&per_page=50&page=${page}`,
       fetchParams
     )
       .then((response) => {

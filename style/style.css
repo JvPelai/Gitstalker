@@ -2,7 +2,8 @@
 body{
     font-family: 'Fjalla One', sans-serif;
     font-size: 35px;
-    background: #555555;
+    background: rgb(65,85,68);
+    background: linear-gradient(90deg, rgba(65,85,68,1) 9%, rgba(44,57,52,1) 44%, rgba(31,41,37,1) 76%);
 }
 
 textarea:focus, input:focus, select:focus {
@@ -24,7 +25,8 @@ input::-webkit-input-placeholder{
 header{
     height: auto;
     padding-bottom: 30px;
-    background: #087441;
+    background: rgb(0,19,36);
+    background: linear-gradient(90deg, rgba(0,19,36,1) 0%, rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
     position: relative;
     width: auto;
 }
@@ -99,7 +101,8 @@ h1{
 footer{
     margin-top: 170px;
     width: 100%;
-    background: #087441;
+    background: rgb(0,19,36);
+    background: linear-gradient(90deg, rgba(0,19,36,1) 0%, rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
     margin-bottom: 0px;
     padding-bottom: 0;
 }
@@ -115,11 +118,13 @@ footer{
     overflow-x: auto;
 }
 .lista-usuarios{
+    background: rgb(151,153,151);
+    background: linear-gradient(90deg, rgb(43, 49, 43) 9%, rgb(40, 48, 44) 47%, rgb(45, 56, 52) 91%);
+    border-radius: 10px;
+    padding: 10px;
     display: inline-block;
     width: auto;
-    height: 1000px;
-    padding-right: 0px;
-    margin-right: 0px;
+    height: 700px;
     overflow-y: auto;
     white-space: initial;
 }
@@ -130,11 +135,11 @@ footer{
 }
 .user-list-block{
     display: inline-block;
-    width: 40%;
+    width: 72%;
     height: 700px;
     vertical-align: top;
     white-space: initial;
-    margin: auto 18%;
+    margin: auto 5%;
     padding: auto
 }
 
@@ -162,12 +167,12 @@ hr{
 
 .user-card{
     display: inline-block;
-    border: 3px solid;
     border-radius: 5px;
-    padding: 5px;
-    width: 470px;
+    padding: 7px;
+    width: 300px;
     margin: 10px;
-    background: #087441;
+    background: rgb(0,19,36);
+    background: linear-gradient(90deg, rgba(0,19,36,1) 0%, rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
 
 }
 
@@ -185,32 +190,30 @@ hr{
 }
 
 .user-card img{
-    width: 78px;
+    width: 69px;
     border-radius: 5px;
     margin-right: 10px;
 }
 
 
 .user-card div a{
-    color: black;
+    color: #999999;
+    font-style: oblique;
     text-decoration: none;
+    font-size: 18px;
+    margin-left: 3px;
 }
 
 .user-card div a:hover{
     text-decoration: underline;
 }
-.user-card p {
-    font-size: 18px;
-    display: inline-block;
-}
-
 
 
 
 .search-option, .order-option,.ordem-cadastro{
     margin-left: 20px;
     border-left: solid 1px black;
-    padding: 15px;
+    padding: 5px;
 }
 label{
     font-size: 14px;
@@ -226,7 +229,7 @@ label{
     border-left:1px solid black;
     border-top: 1px solid black;
     margin: 20px;
-    padding: 20px;
+    padding: 5px;
 }
 .filtra-data-config{
     top: 3px;
@@ -296,3 +299,24 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #c6c6c9;
+    border-radius: 2px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #666666;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
