@@ -20,12 +20,19 @@ function createUserPage(user){
     userInfo.classList.add("user-info");
 
     var avatar = document.createElement("div");
-    if(user.name != null){
-        avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}"> <h2>${user.name}</h2>`;
-    }else{
-        avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}"> <h2>${user.login}</h2>`;
-    }
+
+    avatar.innerHTML = `<img id="profile-pic" src="${user.avatar}">`;
+    
     profileSection.appendChild(avatar);
+    
+    var name = document.createElement("h4");
+    
+    if(user.name != null){
+        name.textContent = user.name
+    }else{
+        name.textContent = user.login
+    }
+    userInfo.appendChild(name);
 
 
     var bio = document.createElement('p');

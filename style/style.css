@@ -3,7 +3,10 @@ body{
     font-family: 'Ubuntu', sans-serif;
     font-size: 35px;
     background: rgb(65,85,68);
-    background: linear-gradient(90deg, rgba(65,85,68,1) 9%, rgba(44,57,52,1) 44%, rgba(31,41,37,1) 76%);
+    background: linear-gradient(90deg, rgb(18, 34, 28) 9%, rgb(29, 41, 36) 44%, rgba(31,41,37,1) 76%);
+}
+h2,h3{
+    color: #aaaaaa
 }
 
 textarea:focus, input:focus, select:focus {
@@ -98,35 +101,39 @@ header{
 
 
 
-
-
-
-
 #main-display{
     white-space: nowrap;
     overflow-x: auto;
+    vertical-align: top;
 }
 .lista-usuarios{
     background: rgb(151,153,151);
     background: linear-gradient(90deg, rgb(43, 49, 43) 9%, rgb(40, 48, 44) 47%, rgb(45, 56, 52) 91%);
     border-radius: 10px;
-    padding: 10px;
+    padding: 0.2%;
     display: inline-block;
     height: auto;
+    vertical-align: top;
+    width: fit-content;
+    
 }
 
 
 #filter-form{
-    display: inline-block;
+    display: block;
+    width: max-content;
 }
 .user-list-block{
     display: inline-block;
+    position: relative;
     height: max-content;
-    width: 72%;
+    width: 54%;
     vertical-align: top;
     white-space: initial;
-    margin: auto 5%;
-    padding: auto
+    margin-bottom: 5%;
+    margin-left: 9%;
+    padding-left: auto;
+    padding-right: auto;
 }
 
 hr{
@@ -154,39 +161,44 @@ hr{
 .user-card{
     display: inline-block;
     border-radius: 5px;
-    padding: 7px;
-    width: 300px;
-    margin: 10px;
+    width: 243px;
+    margin: 6px;
     background: rgb(0,19,36);
     background: linear-gradient(90deg,rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
-
+    
 }
 
 .user-card:hover{
-    transform: scale(1.03);
-    opacity: 0.9;
+    transform: scale(1.02);
+    opacity: 0.8;
 }
 
 
 .user-card div{
     display: inline-block;
     border-radius: 30px;
-    
+    vertical-align: middle;
+    max-width: 150px;
     
 }
 
 .user-card img{
-    width: 69px;
+    width: 76px;
     border-radius: 5px;
-    margin-right: 10px;
+    margin: 4px;
+    bottom: 2px;
 }
 
 
 .user-card div a{
     color: #cccccc;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 3px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    
 }
 
 .user-card div a:hover{
@@ -195,11 +207,6 @@ hr{
 
 
 
-.search-option, .order-option,.ordem-cadastro{
-    margin-left: 20px;
-    border-left: solid 1px black;
-    padding: 5px;
-}
 label{
     font-size: 14px;
     font-weight: normal;
@@ -211,21 +218,15 @@ label{
 .filtra-data-config,.filtra-seguidores-config,.filtra-repos-config{
     color: #bbbbbb;
     position: relative;
-    border-left:1px solid black;
-    border-top: 1px solid black;
-    margin: 20px;
-    padding: 5px;
 }
-.filtra-data-config{
-    top: 3px;
-}
+
 
 #filter-submit{
     font-size: 18px;
     font-weight: bold;
     color: black;
     margin: 20px;
-    width: 180px;
+    width: 220px;
     height: 35px;
     background: #087441;
     border-radius: 5px;
@@ -251,8 +252,8 @@ span{
     display: none;
 }
 
-#min-repos,#max-repos,#min-seguidores,#max-seguidores{
-    width: 120px;
+#min-repos,#max-repos,#min-seguidores,#max-seguidores,#min-data-cad,#max-data-cad{
+    width: 132px;
 }
 
 .tela-carregamento{
@@ -289,7 +290,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 ::-webkit-scrollbar {
     width: 12px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #c6c6c9;
@@ -304,4 +305,126 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+
+
+
+
+main{
+    margin-top: 1%;
+}
+
+.dropdown{
+    display: inline-block;
+    margin-left: 21%;
+    font-size: 21px;
+    text-transform: uppercase;
+    vertical-align: top;
+}
+
+.dropdown:hover{
+    cursor: pointer;
+}
+
+.drop-arrow{
+    width: 12px;
+    transform: rotate(270deg);
+    transition: 0.4s;
+}
+@keyframes drop-down{
+    0%{
+        transform: scaleY(0);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+
+.dropdown-content{
+    height: 0px;
+    position: absolute;
+}
+.transition{
+    display: block;
+    animation: 1s drop-down;
+}
+
+
+.clicked-arrow{
+    transform: rotate(360deg);
+    transition: 0.4s;
+}
+
+.space{
+    width: 9em;
+    margin-left: 9%;
+    color: transparent;
+    border: none;
+}
+
+.switch-label{
+    font-size: 18px;
+    display: inline;
+    margin-left: 4px;
+    vertical-align: bottom;
+    color: #bbbbbb;
+}
+
+#filtro-data,#filtro-seg,#filtro-repos,#sort-option{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch{
+    display: inline-block;
+    position: relative;
+    width: 32px;
+    height: 18px;
+    border-radius: 10%;
+}
+
+.slider{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 18%;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 19px;
+    left: 0px;
+    bottom: 1px;
+    border-radius: 18%;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #1da77d;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #15946e;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
+  }
+
+  .drop-sort-options,.drop-data-cad,.drop-seg,.drop-repos{
+    height: 20%;
+    vertical-align: top;
   }

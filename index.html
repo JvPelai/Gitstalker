@@ -22,7 +22,7 @@
                         </div>
                     </div> 
             </header>
-            <br>
+            
             <main>
                 
                 <div class="tela-carregamento hidden-order">
@@ -30,12 +30,13 @@
                     <div class="loading"></div>
                 </div>
                 <section id="main-display">
-                    
-                    <form id="filter-form">
+                    <div style="display: inline-block; margin-left: 58px">
+
+                        <h3 class="dropdown">Filtros <img class="drop-arrow" src="images/drop-arrow.png"></h3>
                         
-                        <h3>Filtrar busca:</h3><br>
+                    <form id="filter-form">    
                         
-                        <div>
+                        <div class="dropdown-content hidden-order">
                             
                             <div class="search-option">
                                 
@@ -47,89 +48,105 @@
                                 <input type="radio" name="tipo-busca" value="org"> 
                             </div>
                             
-                            <div class="order-option">
+                            <div class="order-option transition">
                                 <!-- TODO: remover essa opção "Ordenar resultados?". 
-                                0 -  não está no escopo do projeto
-                                1 - ela não faz sentido nenhum 
-                                2 - gera uma consulta desnecessaria na API quando desmarcado -->
-                                <div id="sort-box">
-                                    <label for="sort-option">Ordenar por:</label><br>
-                                    
-                                    <label for="sort-option">seguidores</label>
-                                    <input type="radio" name="sort-option" value="&sort=followers" checked>
-                                    
-                                    <label for="sort-option">repositórios</label>
-                                    <input type="radio" name="sort-option" value="&sort=repositories">
-                                    
+                                    0 -  não está no escopo do projeto
+                                    1 - ela não faz sentido nenhum 
+                                    2 - gera uma consulta desnecessaria na API quando desmarcado -->
+                                
+                                    <label class="switch" for="sort-option">
+                                    <input type="checkbox" id="sort-option">
+                                    <span class="slider"></span></label><p class="switch-label">Ordenar resultados</p>
                                     <br>
                                     
-                                    <label for="sort-order">Ordem: </label><br>
-                                    
-                                    <label for="sort-order">Decrescente</label>
-                                    <input type="radio" name="sort-order" value="&order=desc" checked>
-                                    
-                                    <label for="sort-order">Crescente</label>
-                                    <input type="radio" name="sort-order" value="&order=asc">
-                                </div>                       
-                            </div>
+                                    <div class="drop-sort-options hidden-order">
 
-                            <div class="ordem-cadastro hidden-order">
-                                <label for="ordem-cadastro">Mostrar cadastros:</label><br>
-                                <select id="ordem-cadastro">
-                                    <option value="mais-recentes">Mais recentes</option>
-                                    <option value="mais-antigos" selected>Mais antigos</option>
-                                </select>
+                                        <label for="sort-option">seguidores</label>
+                                        <input type="radio" name="sort-option" value="&sort=followers" checked>
+                                        
+                                        <label for="sort-option">repositórios</label>
+                                        <input type="radio" name="sort-option" value="&sort=repositories">
+                                        
+                                        <br>
+                                        
+                                        <label for="sort-order">Ordem: </label><br>
+                                        
+                                        <label for="sort-order">Decrescente</label>
+                                        <input type="radio" name="sort-order" value="&order=desc" checked>
+                                        
+                                        <label for="sort-order">Crescente</label>
+                                        <input type="radio" name="sort-order" value="&order=asc">
+                                    </div>
+                
+                            </div>                       
+                            
+                            
+                            <div class="filtra-data-config">
+                                <label class="switch" for="filtro-data">
+                                <input type="checkbox" name="filtro-data" id="filtro-data">
+                                <span class="slider"></span></label><p class="switch-label">Data de cadastro</p>
+                                
+                                <br>
+                                
+                                <div class="drop-data-cad hidden-order">
+                                    <label for="min-data-cad">Cadastados a partir de:</label><br>
+                                    <input type="date" name="min-data-cad" id="min-data-cad" value="2007-10-19"><br>
+                                    
+                                    <label for="max-data-cad">Cadastados antes de:</label><br>
+                                    <input type="date" name="max-data-cad" id="max-data-cad"><br>
+                                </div>
                             </div>
+                            
+                            
+                            <div class="filtra-seguidores-config">
+                                <label class="switch" for="filtro-seg">
+                                <input type="checkbox" name="filtro-seg" id="filtro-seg">
+                                <span class="slider"></span></label><p class="switch-label">Numero de seguidores</p>
+                                <br>
+
+                                <div class="drop-seg hidden-order">
+
+                                    <label>Selecione um valor de busca:</label><br>
+                                    
+                                    <label for="min-seguidores">A partir de:</label><br>
+                                    <input type="number" id="min-seguidores" name="min-seguidores" min="0"><br>
+                                    
+                                    <label for="max-seguidores">Até:</label><br>
+                                    <input type="number" id="max-seguidores" name="max-seguidores" min="1">
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="filtra-repos-config">
+                                <label class="switch" for="filtro-repos">
+                                <input type="checkbox" name="filtro-repos" id="filtro-repos">
+                                <span class="slider"></span></label><p class="switch-label">Numero de repositorios</p>
+                                <br>
+                                
+                                <div class="drop-repos hidden-order">
+                                    <label for="ordem-repos">Selecione um valor de busca:</label><br>
+                                    
+                                    <label for="min-repos">A partir de:</label><br>
+                                    <input type="number" id="min-repos" name="min-repos" min="0" max="100.000"><br>
+                                    
+                                    <label for="max-repos">Até:</label><br>
+                                    <input type="number" id="max-repos" name="max-repos" min="1">     
+                                </div>
+                            </div>
+                            
+                            <input type="submit" id="filter-submit" value="Aplicar Filtros">
+                            
                         </div>
                         
-                        <div class="filtra-data-config">
-                            <label for="filtro-data">Data de cadastro</label>
-                            <input type="checkbox" name="filtro-data" id="filtro-data"><br>
-                            
-                            
-                            <label for="min-data-cad">Cadastados a partir de:</label><br>
-                            <input type="date" name="min-data-cad" id="min-data-cad" value="2007-10-19"><br>
-                            
-                            <label for="max-data-cad">Cadastados antes de:</label><br>
-                            <input type="date" name="max-data-cad" id="max-data-cad"><br>
-                            
-                        </div>
-                        
-                        <div class="filtra-seguidores-config">
-                            <label for="filtro-seg">Numero de seguidores:</label>
-                            <input type="checkbox" name="filtro-seg" id="filtro-seg"><br>
-                            <label>Selecione um valor de busca:</label><br>
-                            
-                            <label for="min-seguidores">A partir de:</label><br>
-                            <input type="number" id="min-seguidores" name="min-seguidores" min="0"><br>
-                            
-                            <label for="max-seguidores">Até:</label><br>
-                            <input type="number" id="max-seguidores" name="max-seguidores" min="1">
-                            
-                        </div>
-                        
-                    <div class="filtra-repos-config">
-                        <label for="filtro-repos">Numero de repositórios:</label>
-                        <input type="checkbox" name="filtro-repos" id="filtro-repos"><br>
-                        <label for="ordem-repos">Selecione um valor de busca:</label><br>
-                        
-                        <label for="min-repos">A partir de:</label><br>
-                        <input type="number" id="min-repos" name="min-repos" min="0" max="100.000"><br>
-                        
-                        <label for="max-repos">Até:</label><br>
-                        <input type="number" id="max-repos" name="max-repos" min="1">     
-                    </div>
-                    <br>
-                    
-                    <input type="submit" id="filter-submit" value="Aplicar Filtros">
-                    
-                </form>
+                    </form>
+                    <hr class="space">
+                </div>
                 
                 
                 
                 
                 <div class="user-list-block">
-                    <h2>Usuários:</h2><br>
+                    <h2 style="font-size: 21px;text-transform: uppercase;">Usuários:</h2><br>
                     
                     <span class="error-msg hidden-order"><br>Nenhum resultado encontrado... tente alterar as configurações de busca.</span>
                     
@@ -148,6 +165,8 @@
             </main>
             
             </body>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="main.js"></script>
             <script src="api/usuarios.js"></script>
+            <script src="lib/menu.js"></script>
     </html>
