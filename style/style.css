@@ -1,6 +1,6 @@
 
 body{
-    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     font-size: 35px;
     background: rgb(65,85,68);
     background: linear-gradient(90deg, rgba(65,85,68,1) 9%, rgba(44,57,52,1) 44%, rgba(31,41,37,1) 76%);
@@ -17,16 +17,25 @@ input::-webkit-input-placeholder{
     opacity: 0.4;
 }
 
+.box{
+    display: inline-block;
+    margin-left: 6%;
+}
 #logo{
     padding: 0%;
-    width: 220px;
-    margin-left: 10%;
+    width: 80px;
+    margin-left: 27px;
+}
+h1{
+    font-weight: 600;
+    font-size: 24px;
+    
 }
 header{
-    height: auto;
+    height: 90px;
     padding-bottom: 30px;
     background: rgb(0,19,36);
-    background: linear-gradient(90deg, rgba(0,19,36,1) 0%, rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
+    background: linear-gradient(90deg, rgb(31, 129, 72) 0%, rgb(48, 122, 55) 47%, rgb(25, 75, 57) 100%);
     position: relative;
     width: auto;
 }
@@ -35,8 +44,10 @@ header{
     font-weight: bold;
     display: inline-block;
     position: relative;
-    margin-left: 10%;
-    width: fit-content; 
+    margin-left: 15%;
+    width: 400px;
+    vertical-align: top;
+    margin-top: 46px;
 }
 
 .search-box label{
@@ -45,14 +56,13 @@ header{
 
 .search-input{
     position: relative;
-    margin-bottom: 10px;
-}
+    }
 #main-search{
     border: black 1px solid;
     border-radius: 10px;
     padding-left: 10px;
     width: 114%;
-    height: 25px;
+    height: 32px;
     background-color: white;
     margin-left: 10px;
     
@@ -64,7 +74,7 @@ header{
 
 .search-icon{
     padding: 0px;
-    border-radius: 50%;
+    border-radius: 8px;
     width: 21px;
     transition: 0.8s;
 }
@@ -75,7 +85,7 @@ header{
 
 .search-btn{
     position: absolute;
-    right: -29px;
+    right: -54px;
     top: 14px;
     border-radius: 100%;
     height: 20px;
@@ -88,30 +98,9 @@ header{
 
 
 
-h1{ 
-    display: inline-block;
-    font-size: 2em;
-    position: absolute;
-    top: 30%;
-    right: 5%;
-    bottom: 10%;
-    
-}
 
-footer{
-    margin-top: 170px;
-    width: 100%;
-    background: rgb(0,19,36);
-    background: linear-gradient(90deg, rgba(0,19,36,1) 0%, rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
-    margin-bottom: 0px;
-    padding-bottom: 0;
-}
 
-#logo-foot{
-    padding: 0%;
-    width: 220px;
-    margin-left: 41%;
-}
+
 
 #main-display{
     white-space: nowrap;
@@ -123,10 +112,7 @@ footer{
     border-radius: 10px;
     padding: 10px;
     display: inline-block;
-    width: auto;
-    height: 700px;
-    overflow-y: auto;
-    white-space: initial;
+    height: auto;
 }
 
 
@@ -135,8 +121,8 @@ footer{
 }
 .user-list-block{
     display: inline-block;
+    height: max-content;
     width: 72%;
-    height: 700px;
     vertical-align: top;
     white-space: initial;
     margin: auto 5%;
@@ -172,7 +158,7 @@ hr{
     width: 300px;
     margin: 10px;
     background: rgb(0,19,36);
-    background: linear-gradient(90deg, rgba(0,19,36,1) 0%, rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
+    background: linear-gradient(90deg,rgba(31,92,37,1) 47%, rgba(26,128,92,1) 100%);
 
 }
 
@@ -197,8 +183,7 @@ hr{
 
 
 .user-card div a{
-    color: #999999;
-    font-style: oblique;
+    color: #cccccc;
     text-decoration: none;
     font-size: 18px;
     margin-left: 3px;

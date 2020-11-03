@@ -12,6 +12,7 @@ var sortOption;
 var sortOrder;
 var searchTypeParam;
 var filtros = "";
+var body = document.querySelector("body");
 
 const accessToken = { token: "50aca22dda5474d5a46ca31ab0831ad883488aab" };
 const auth = accessToken.token;

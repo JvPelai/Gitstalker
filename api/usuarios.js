@@ -2,7 +2,7 @@ function listaUsuarios(page = "1", type = "User", filtros = "") {
   currentPage = page;
   return (
     fetch(
-      `https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}${sortParams}&per_page=50&page=${page}`,
+      `https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}${sortParams}&per_page=40&page=${page}`,
       fetchParams
     )
       .then((response) => {
@@ -35,7 +35,6 @@ async function paginaUsuarios(page, type = "User", filtros = "") {
     // HACK: nunca usar await e then juntos isso não é uma boa pratica. Se possivel use sempre async/await.
     // Veja no exemplo abaixo, como o codigo fica até mais organizado.
   const list = await listaUsuarios(page, type, filtros);
-  console.log(list)
   if(list.length == 0){
     noResults();
   };
@@ -47,8 +46,8 @@ async function paginaUsuarios(page, type = "User", filtros = "") {
   telaCarregamento.classList.add("hidden-order");
 }
 
-lista.addEventListener("scroll", async function () {
-  if (lista.scrollHeight == lista.offsetHeight + lista.scrollTop) {
+window.addEventListener("scroll", async function () {
+  if (window.scrollY + window.innerHeight == body.scrollHeight) {
       const list = await listaUsuarios(
         parseInt(currentPage) + 1,
         searchTypeParam,
