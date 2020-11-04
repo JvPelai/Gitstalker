@@ -2,7 +2,7 @@ function listaUsuarios(page = "1", type = "User", filtros = "") {
   currentPage = page;
   return (
     fetch(
-      `https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}${sortParams}&per_page=40&page=${page}`,
+      `https://api.github.com/search/users?q=${searchBar.value}+type:${type}+location:Piracicaba${filtros}${sortParams}&per_page=27&page=${page}`,
       fetchParams
     )
       .then((response) => {
@@ -25,13 +25,6 @@ async function paginaUsuarios(page, type = "User", filtros = "") {
   errorMsg.classList.add("hidden-order");
   currentPage = page;
   telaCarregamento.classList.remove("hidden-order");
-    // await listaUsuarios(page,type,filtros).then( list => {
-    //     list.forEach(user => {
-    //         var userCard = createUserCard(user);
-    //         lista.appendChild(userCard);
-    //     });
-    // });
-
     // HACK: nunca usar await e then juntos isso não é uma boa pratica. Se possivel use sempre async/await.
     // Veja no exemplo abaixo, como o codigo fica até mais organizado.
   const list = await listaUsuarios(page, type, filtros);
@@ -47,7 +40,7 @@ async function paginaUsuarios(page, type = "User", filtros = "") {
 }
 
 window.addEventListener("scroll", async function () {
-  if (window.scrollY + window.innerHeight == body.scrollHeight) {
+  if (window.scrollY + window.innerHeight >= body.scrollHeight-1) {
       const list = await listaUsuarios(
         parseInt(currentPage) + 1,
         searchTypeParam,
@@ -66,7 +59,7 @@ function createUserCard(user) {
   var avatar = document.createElement("div");
   var name = document.createElement("div");
   avatar.innerHTML = `<img src="${user.avatar_url}">`;
-  name.innerHTML = `<a href="./user.html?username=${user.login}">${user.login}</a>`;
+  name.innerHTML = `<a href="user.html?username=${user.login}">${user.login}</a>`;
   card.appendChild(avatar);
   card.appendChild(name);
   return card;

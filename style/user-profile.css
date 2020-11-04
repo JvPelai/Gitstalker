@@ -5,8 +5,9 @@ body{
 #user-profile{
     border: none;
     border-radius: 20px;
-    width: 60%;
-    margin-left: 15%;
+    width: auto;
+    max-width: 45%;
+    margin-left: 25%;
     color: #aeb18b;
     background: rgb(36,41,33);
     background: linear-gradient(90deg, rgb(23, 54, 39) 65%, rgb(35, 71, 53) 87%);
@@ -31,6 +32,7 @@ h2{
     font-size: 20px;
     height: 100%;
     width: auto;
+    max-width: 40%;
     margin: 2% 10%;
     vertical-align: top;
     
@@ -45,10 +47,12 @@ h4{
     font-weight: 600;
     font-style: oblique;
     margin-bottom: 22px;
+    color: azure;
 }
 h4 a{
     color: #aaaaaa;
     text-decoration: none;
+    margin-left: 25%;
 }
 
 h4 a:hover{
