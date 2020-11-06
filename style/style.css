@@ -22,12 +22,12 @@ input::-webkit-input-placeholder{
 
 .box{
     display: inline-block;
-    margin-left: 6%;
+    margin-left: 8%;
 }
 #logo{
     padding: 0%;
     width: 80px;
-    margin-left: 27px;
+    margin-left: 23%;
 }
 h1{
     font-weight: 600;
@@ -429,3 +429,55 @@ main{
     height: 20%;
     vertical-align: top;
   }
+
+.form-container{
+    display: inline-block;
+    margin-left: 3%;
+}
+
+@media(max-width: 1425px){
+    .lista-usuarios{
+        max-width: 510px;
+    }
+}
+
+@media(max-width:960px){
+    .lista-usuarios{
+        max-width: 255px;
+    }
+}
+
+@media(max-width:750px){
+    .user-list-block{
+        display: block;
+        position: relative;
+
+    }
+
+    .search-box{
+        width: 30%;
+        margin-left: 7%;
+    }
+
+    .search-btn{
+        right: -13%;
+    }
+
+    #filter-form{
+        margin-left: 7%;
+    }
+
+    #main-display{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-container{
+        display: block;
+        position: relative;
+    }
+    .dropdown-content{
+        position: relative;
+        height: 100%;
+    }
+}
