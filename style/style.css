@@ -451,7 +451,7 @@ main{
     .user-list-block{
         display: block;
         position: relative;
-
+        right: 15%;
     }
 
     .search-box{
@@ -470,6 +470,7 @@ main{
     #main-display{
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     .form-container{
