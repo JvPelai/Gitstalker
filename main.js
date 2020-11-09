@@ -1,4 +1,4 @@
-// TODO: organizar sempre as variaveis globais (utilizadas em mais de um arquivo), no topo do script
+
 var errorMsg = document.querySelector(".error-msg");
 var currentPage = "1";
 var telaCarregamento = document.querySelector(".tela-carregamento");
@@ -23,20 +23,7 @@ const fetchParams = {
   },
 };
 
-function fetchRateLimit() {
-// HACK: não há necessidade de esperar a resposta dessa requisição se ela não é retornada pra ninguem
-//   fetch("https://api.github.com/rate_limit", fetchParams)
-//     .then((response) => {
-//       return response.json();
-//     })
-//     .then((json) => {
-//       console.log(json);
-//     });
 
-    fetch("https://api.github.com/rate_limit", fetchParams);    
-}
-// HACK: é sempre bom deixar claro o momento em que são chamadas as funções. Não é boa pratica deixar fetches soltos pela aplicação
-fetchRateLimit();
 
 var tiposDeBusca = document.getElementsByName("tipo-busca");
 for (tipo of tiposDeBusca) {
@@ -52,8 +39,6 @@ function changeSortParams() {
   sortParams = sortOption + sortOrder;   
 }
 
-// TODO: organizar melhor a ordem de execução, o código está muito largado.
-// criar funções com nome claro ex: addEventListenerToSortOptions 
 for (option of sortOptions) {
   if (option.checked) {
     sortOption = option.value;

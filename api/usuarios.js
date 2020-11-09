@@ -8,7 +8,6 @@ function listaUsuarios(page = "1", type = "User", filtros = "") {
       .then((response) => {
         return response.json();
       })
-      // TODO: a responsabilidade dessa função é retornar a lista, quem chama ela, deve saber o que fazer caso não receba dados
       .then((json) => {
         return json.items;
       })
@@ -25,8 +24,6 @@ async function paginaUsuarios(page, type = "User", filtros = "") {
   errorMsg.classList.add("hidden-order");
   currentPage = page;
   telaCarregamento.classList.remove("hidden-order");
-    // HACK: nunca usar await e then juntos isso não é uma boa pratica. Se possivel use sempre async/await.
-    // Veja no exemplo abaixo, como o codigo fica até mais organizado.
   const list = await listaUsuarios(page, type, filtros);
   if(list.length == 0){
     noResults();
@@ -96,4 +93,4 @@ function userData(name) {
 
 paginaUsuarios(currentPage);
 
-//JSON.parse(localStorage.getItem("userObjectArray")).sort(ordenaData).find(user => user.login == "JvPelai")
+
