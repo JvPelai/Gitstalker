@@ -14,13 +14,9 @@ var searchTypeParam;
 var filtros = "";
 var body = document.querySelector("body");
 
-const accessToken = { token: "c71cb0e3a5d1bbad2ec20dabc1f768fc1649414c" };
-const auth = accessToken.token;
+
 const fetchParams = {
   method: "GET",
-  headers: {
-    Authorization: "Basic " + btoa(auth),
-  },
 };
 
 
