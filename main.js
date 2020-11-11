@@ -14,7 +14,7 @@ var searchTypeParam;
 var filtros = "";
 var body = document.querySelector("body");
 
-const accessToken = { token: "85432a83a4a2ec347872fd66d3a4440326b99c21" };
+const accessToken = { token: "c71cb0e3a5d1bbad2ec20dabc1f768fc1649414c" };
 const auth = accessToken.token;
 const fetchParams = {
   method: "GET",
